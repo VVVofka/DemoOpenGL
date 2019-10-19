@@ -1,45 +1,12 @@
-/*
-from https://docs.microsoft.com/en-us/windows/win32/opengl/the-program-ported-to-win32
-Create new project -> Windows DeskTop Wizard -> Desktop Application (exe) & Empty project
-Project Property:
-	Advanced -> Character Set -> Use Multi Character set
-	Linker -> Input-> Additional Dependence -> add OPENGL32.LIB GLU32.LIB
- */
-#include <windows.h> 
-#include <GL/gl.h> 
-#include <GL/glu.h> 
+//from https://docs.microsoft.com/en-us/windows/win32/opengl/the-program-ported-to-win32
+//Create new project -> Windows DeskTop Wizard -> Desktop Application (exe) & Empty project
+//Project Property:
+//		Advanced -> Character Set -> Use Multi Character set
+//		Linker -> Input-> Additional Dependence -> add OPENGL32.LIB GLU32.LIB
 
- /* Windows globals, defines, and prototypes */
-CHAR szAppName[] = "Win OpenGL";
-HWND  ghWnd;
-HDC   ghDC;
-HGLRC ghRC;
+#include "MainLife.h"
 
-#define SWAPBUFFERS SwapBuffers(ghDC)
-#define BLACK_INDEX     0 
-#define RED_INDEX       13 
-#define GREEN_INDEX     14 
-#define BLUE_INDEX      16 
-#define WIDTH           300 
-#define HEIGHT          200 
-
-LONG WINAPI MainWndProc(HWND, UINT, WPARAM, LPARAM);
-BOOL bSetupPixelFormat(HDC);
-
-/* OpenGL globals, defines, and prototypes */
-GLfloat latitude, longitude, latinc, longinc;
-GLdouble radius;
-
-#define GLOBE    1 
-#define CYLINDER 2 
-#define CONE     3 
-
-GLvoid resize(GLsizei, GLsizei);
-GLvoid initializeGL(GLsizei, GLsizei);
-GLvoid drawScene(GLvoid);
-void polarView(GLdouble, GLdouble, GLdouble, GLdouble);
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 	MSG        msg;
 	WNDCLASS   wndclass;
 
@@ -112,12 +79,12 @@ LONG WINAPI MainWndProc(
 	switch(uMsg) {
 
 		case WM_CREATE:
-			ghDC = GetDC(hWnd);
-			if(!bSetupPixelFormat(ghDC))
+			g.ghDC = GetDC(hWnd);
+			if(!bSetupPixelFormat(g.ghDC))
 				PostQuitMessage(0);
 
-			ghRC = wglCreateContext(ghDC);
-			wglMakeCurrent(ghDC, ghRC);
+			ghRC = wglCreateContext(g.ghDC);
+			wglMakeCurrent(g.ghDC, ghRC);
 			GetClientRect(hWnd, &rect);
 			initializeGL(rect.right, rect.bottom);
 			break;
@@ -135,10 +102,10 @@ LONG WINAPI MainWndProc(
 		case WM_CLOSE:
 			if(ghRC)
 				wglDeleteContext(ghRC);
-			if(ghDC)
-				ReleaseDC(hWnd, ghDC);
+			if(g.ghDC)
+				ReleaseDC(hWnd, g.ghDC);
 			ghRC = 0;
-			ghDC = 0;
+			g.ghDC = 0;
 
 			DestroyWindow(hWnd);
 			break;
@@ -146,8 +113,8 @@ LONG WINAPI MainWndProc(
 		case WM_DESTROY:
 			if(ghRC)
 				wglDeleteContext(ghRC);
-			if(ghDC)
-				ReleaseDC(hWnd, ghDC);
+			if(g.ghDC)
+				ReleaseDC(hWnd, g.ghDC);
 
 			PostQuitMessage(0);
 			break;
@@ -155,16 +122,16 @@ LONG WINAPI MainWndProc(
 		case WM_KEYDOWN:
 			switch(wParam) {
 				case VK_LEFT:
-					longinc += 0.5F;
+					g.longinc += 0.5F;
 					break;
 				case VK_RIGHT:
-					longinc -= 0.5F;
+					g.longinc -= 0.5F;
 					break;
 				case VK_UP:
-					latinc += 0.5F;
+					g.latinc += 0.5F;
 					break;
 				case VK_DOWN:
-					latinc -= 0.5F;
+					g.latinc -= 0.5F;
 					break;
 			}
 
@@ -255,7 +222,7 @@ GLvoid initializeGL(GLsizei width, GLsizei height) {
 	GLfloat     maxObjectSize, aspect;
 	GLdouble    near_plane, far_plane;
 
-	glClearIndex((GLfloat)BLACK_INDEX);
+	glClearIndex((GLfloat)g.BLACK_INDEX);
 	glClearDepth(1.0);
 
 	glEnable(GL_DEPTH_TEST);
@@ -268,12 +235,12 @@ GLvoid initializeGL(GLsizei width, GLsizei height) {
 	near_plane = 3.0;
 	far_plane = 7.0;
 	maxObjectSize = 3.0F;
-	radius = near_plane + maxObjectSize / 2.0;
+	g.radius = near_plane + maxObjectSize / 2.0;
 
-	latitude = 0.0F;
-	longitude = 0.0F;
-	latinc = 6.0F;
-	longinc = 2.5F;
+	g.latitude = 0.0F;
+	g.longitude = 0.0F;
+	g.latinc = 6.0F;
+	g.longinc = 2.5F;
 
 	createObjects();
 }
@@ -292,18 +259,18 @@ GLvoid drawScene(GLvoid) {
 
 	glPushMatrix();
 
-	latitude += latinc;
-	longitude += longinc;
+	g.latitude += g.latinc;
+	g.longitude += g.longinc;
 
-	polarView(radius, 0, latitude, longitude);
+	polarView(g.radius, 0, g.latitude, g.longitude);
 
-	glIndexi(RED_INDEX);
+	glIndexi(g.RED_INDEX);
 	glCallList(CONE);
 
-	glIndexi(BLUE_INDEX);
+	glIndexi(g.BLUE_INDEX);
 	glCallList(GLOBE);
 
-	glIndexi(GREEN_INDEX);
+	glIndexi(g.GREEN_INDEX);
 	glPushMatrix();
 	glTranslatef(0.8F, -0.65F, 0.0F);
 	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
@@ -312,5 +279,5 @@ GLvoid drawScene(GLvoid) {
 
 	glPopMatrix();
 
-	SWAPBUFFERS;
-}
+	g.SwapBuf();
+} // ///////////////////////////////////////////////////////////////////////

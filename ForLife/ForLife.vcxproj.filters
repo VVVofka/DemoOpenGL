@@ -15,7 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MainMS.cpp">
+    <ClInclude Include="MainLife.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyGL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainLife.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
