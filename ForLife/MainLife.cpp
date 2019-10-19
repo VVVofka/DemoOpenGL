@@ -3,9 +3,8 @@
 //Project Property:
 //		Advanced -> Character Set -> Use Multi Character set
 //		Linker -> Input-> Additional Dependence -> add OPENGL32.LIB GLU32.LIB
-
 #include "MainLife.h"
-
+ // *********************************************************************************************
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow) {
 	MSG        msg;
 	WNDCLASS   wndclass;
@@ -38,36 +37,25 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		hInstance,
 		NULL);
 
-	/* make sure window was created */
-	if(!ghWnd)
+	if(!ghWnd)	//	make sure window was created 
 		return FALSE;
-
-	/* show and update main window */
-	ShowWindow(ghWnd, nCmdShow);
-
+	ShowWindow(ghWnd, nCmdShow);	//  show and update main window 
 	UpdateWindow(ghWnd);
 
-	/* animation loop */
-	while(1) {
-		/*
-		 *  Process all pending messages
-		 */
-
+	while(1) {	//	 animation loop 
+		 // Process all pending messages
 		while(PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE) {
 			if(GetMessage(&msg, NULL, 0, 0)) {
 				TranslateMessage(&msg);
 				DispatchMessage(&msg);
 			}
-			else {
+			else 
 				return TRUE;
-			}
 		}
 		g.drawScene();
 	}
 } // ///////////////////////////////////////////////////////////////////////////////
-
-/* main window procedure */
-LONG WINAPI MainWndProc(
+LONG WINAPI MainWndProc(	//	 main window procedure
 	HWND    hWnd,
 	UINT    uMsg,
 	WPARAM  wParam,
@@ -75,30 +63,24 @@ LONG WINAPI MainWndProc(
 	LONG    lRet = 1;
 	PAINTSTRUCT    ps;
 	RECT rect;
-
 	switch(uMsg) {
-
 		case WM_CREATE:
 			g.ghDC = GetDC(hWnd);
 			if(!bSetupPixelFormat(g.ghDC))
 				PostQuitMessage(0);
-
 			ghRC = wglCreateContext(g.ghDC);
 			wglMakeCurrent(g.ghDC, ghRC);
 			GetClientRect(hWnd, &rect);
 			g.initializeGL(rect.right, rect.bottom);
 			break;
-
 		case WM_PAINT:
 			BeginPaint(hWnd, &ps);
 			EndPaint(hWnd, &ps);
 			break;
-
 		case WM_SIZE:
 			GetClientRect(hWnd, &rect);
 			g.resize(rect.right, rect.bottom);
 			break;
-
 		case WM_CLOSE:
 			if(ghRC)
 				wglDeleteContext(ghRC);
@@ -106,10 +88,8 @@ LONG WINAPI MainWndProc(
 				ReleaseDC(hWnd, g.ghDC);
 			ghRC = 0;
 			g.ghDC = 0;
-
 			DestroyWindow(hWnd);
 			break;
-
 		case WM_DESTROY:
 			if(ghRC)
 				wglDeleteContext(ghRC);
@@ -118,7 +98,6 @@ LONG WINAPI MainWndProc(
 
 			PostQuitMessage(0);
 			break;
-
 		case WM_KEYDOWN:
 			switch(wParam) {
 				case VK_LEFT:
@@ -134,15 +113,12 @@ LONG WINAPI MainWndProc(
 					g.latinc -= 0.5F;
 					break;
 			}
-
 		default:
 			lRet = DefWindowProc(hWnd, uMsg, wParam, lParam);
 			break;
 	}
-
 	return lRet;
 } // ///////////////////////////////////////////////////////////////////////////////
-
 BOOL bSetupPixelFormat(HDC hdc) {
 	PIXELFORMATDESCRIPTOR pfd, * ppfd;
 	int pixelformat;
@@ -174,9 +150,6 @@ BOOL bSetupPixelFormat(HDC hdc) {
 
 	return TRUE;
 } // ///////////////////////////////////////////////////////////////////////////////
-
-/* OpenGL code */
-
 
 
 

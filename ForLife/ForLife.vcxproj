@@ -147,10 +147,12 @@
   <ItemGroup>
     <ClCompile Include="MainLife.cpp" />
     <ClCompile Include="MyGL.cpp" />
+    <ClCompile Include="MyGlbak.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainLife.h" />
     <ClInclude Include="MyGL.h" />
+    <ClInclude Include="MyGlbak.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,10 @@
-#include "MyGL.h"
+#include "MyGlbak.h"
 #pragma warning(push)
 #pragma warning(disable:6031 26451) 
 
-MyGL::MyGL() {}
-MyGL::~MyGL() {}
-GLvoid MyGL::initializeGL(GLsizei width, GLsizei height) {
+MyGlbak::MyGlbak() {}
+MyGlbak::~MyGlbak() {}
+GLvoid MyGlbak::initializeGL(GLsizei width, GLsizei height) {
 	GLfloat     maxObjectSize, aspect;
 	GLdouble    near_plane, far_plane;
 
@@ -30,7 +30,7 @@ GLvoid MyGL::initializeGL(GLsizei width, GLsizei height) {
 
 	createObjects();
 } // ////////////////////////////////////////////////////////////////////////
-GLvoid MyGL::createObjects() {
+GLvoid MyGlbak::createObjects() {
 	GLUquadricObj* quadObj;
 
 	glNewList(GLOBE, GL_COMPILE);
@@ -57,7 +57,7 @@ GLvoid MyGL::createObjects() {
 	glPopMatrix();
 	glEndList();
 } // //////////////////////////////////////////////////////////////////////////////
-GLvoid MyGL::drawScene(GLvoid) {
+GLvoid MyGlbak::drawScene(GLvoid) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glPushMatrix();
@@ -84,14 +84,14 @@ GLvoid MyGL::drawScene(GLvoid) {
 
 	SwapBuf();
 } // ///////////////////////////////////////////////////////////////////////
-void MyGL::polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude) {
+void MyGlbak::polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude) {
 	glTranslated(0.0, 0.0, -radius);
 	glRotated(-twist, 0.0, 0.0, 1.0);
 	glRotated(-latitude, 1.0, 0.0, 0.0);
 	glRotated(longitude, 0.0, 0.0, 1.0);
 
 } // //////////////////////////////////////////////////////////////////////
-GLvoid MyGL::resize(GLsizei width, GLsizei height) {
+GLvoid MyGlbak::resize(GLsizei width, GLsizei height) {
 	GLfloat aspect;
 
 	glViewport(0, 0, width, height);

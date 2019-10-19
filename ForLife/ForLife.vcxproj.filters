@@ -21,12 +21,18 @@
     <ClInclude Include="MyGL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyGlbak.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainLife.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyGL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyGlbak.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
