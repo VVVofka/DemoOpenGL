@@ -25,5 +25,32 @@ GLvoid MyGL::initializeGL(GLsizei width, GLsizei height) {
 	latinc = 6.0F;
 	longinc = 2.5F;
 
-	//createObjects();
+	createObjects();
 } // ////////////////////////////////////////////////////////////////////////
+GLvoid MyGL::createObjects() {
+	GLUquadricObj* quadObj;
+
+	glNewList(GLOBE, GL_COMPILE);
+	quadObj = gluNewQuadric();
+	gluQuadricDrawStyle(quadObj, GLU_LINE);
+	gluSphere(quadObj, 1.5, 16, 16);
+	glEndList();
+
+	glNewList(CONE, GL_COMPILE);
+	quadObj = gluNewQuadric();
+	gluQuadricDrawStyle(quadObj, GLU_FILL);
+	gluQuadricNormals(quadObj, GLU_SMOOTH);
+	gluCylinder(quadObj, 0.3, 0.0, 0.6, 15, 10);
+	glEndList();
+
+	glNewList(CYLINDER, GL_COMPILE);
+	glPushMatrix();
+	glRotatef((GLfloat)90.0, (GLfloat)1.0, (GLfloat)0.0, (GLfloat)0.0);
+	glTranslatef((GLfloat)0.0, (GLfloat)0.0, (GLfloat)-1.0);
+	quadObj = gluNewQuadric();
+	gluQuadricDrawStyle(quadObj, GLU_FILL);
+	gluQuadricNormals(quadObj, GLU_SMOOTH);
+	gluCylinder(quadObj, 0.3, 0.3, 0.6, 12, 2);
+	glPopMatrix();
+	glEndList();
+} // //////////////////////////////////////////////////////////////////////////////

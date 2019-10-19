@@ -190,33 +190,6 @@ GLvoid resize(GLsizei width, GLsizei height) {
 	glMatrixMode(GL_MODELVIEW);
 } // ///////////////////////////////////////////////////////////////////////////
 
-GLvoid createObjects() {
-	GLUquadricObj* quadObj;
-
-	glNewList(g.GLOBE, GL_COMPILE);
-	quadObj = gluNewQuadric();
-	gluQuadricDrawStyle(quadObj, GLU_LINE);
-	gluSphere(quadObj, 1.5, 16, 16);
-	glEndList();
-
-	glNewList(g.CONE, GL_COMPILE);
-	quadObj = gluNewQuadric();
-	gluQuadricDrawStyle(quadObj, GLU_FILL);
-	gluQuadricNormals(quadObj, GLU_SMOOTH);
-	gluCylinder(quadObj, 0.3, 0.0, 0.6, 15, 10);
-	glEndList();
-
-	glNewList(g.CYLINDER, GL_COMPILE);
-	glPushMatrix();
-	glRotatef((GLfloat)90.0, (GLfloat)1.0, (GLfloat)0.0, (GLfloat)0.0);
-	glTranslatef((GLfloat)0.0, (GLfloat)0.0, (GLfloat)-1.0);
-	quadObj = gluNewQuadric();
-	gluQuadricDrawStyle(quadObj, GLU_FILL);
-	gluQuadricNormals(quadObj, GLU_SMOOTH);
-	gluCylinder(quadObj, 0.3, 0.3, 0.6, 12, 2);
-	glPopMatrix();
-	glEndList();
-} // //////////////////////////////////////////////////////////////////////////////
 void polarView(GLdouble radius, GLdouble twist, GLdouble latitude,
 	GLdouble longitude) {
 	glTranslated(0.0, 0.0, -radius);

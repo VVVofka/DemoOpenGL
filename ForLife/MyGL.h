@@ -16,7 +16,7 @@ public:
 	const int CYLINDER = 2;
 	const int CONE = 3;
 
-	HDC   ghDC;
+	HDC   ghDC = NULL;
 	void SwapBuf() { SwapBuffers(ghDC); }
 
 	/* OpenGL globals, defines, and prototypes */
@@ -25,6 +25,6 @@ public:
 
 	GLvoid initializeGL(GLsizei width, GLsizei height);
 private:
-
+	GLvoid createObjects();
 }; // ******************************************************************************************
 
