@@ -62,7 +62,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				return TRUE;
 			}
 		}
-		drawScene();
+		g.drawScene();
 	}
 } // ///////////////////////////////////////////////////////////////////////////////
 
@@ -190,39 +190,4 @@ GLvoid resize(GLsizei width, GLsizei height) {
 	glMatrixMode(GL_MODELVIEW);
 } // ///////////////////////////////////////////////////////////////////////////
 
-void polarView(GLdouble radius, GLdouble twist, GLdouble latitude,
-	GLdouble longitude) {
-	glTranslated(0.0, 0.0, -radius);
-	glRotated(-twist, 0.0, 0.0, 1.0);
-	glRotated(-latitude, 1.0, 0.0, 0.0);
-	glRotated(longitude, 0.0, 0.0, 1.0);
 
-} // //////////////////////////////////////////////////////////////////////
-
-GLvoid drawScene(GLvoid) {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	glPushMatrix();
-
-	g.latitude += g.latinc;
-	g.longitude += g.longinc;
-
-	polarView(g.radius, 0, g.latitude, g.longitude);
-
-	glIndexi(g.RED_INDEX);
-	glCallList(g.CONE);
-
-	glIndexi(g.BLUE_INDEX);
-	glCallList(g.GLOBE);
-
-	glIndexi(g.GREEN_INDEX);
-	glPushMatrix();
-	glTranslatef(0.8F, -0.65F, 0.0F);
-	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
-	glCallList(g.CYLINDER);
-	glPopMatrix();
-
-	glPopMatrix();
-
-	g.SwapBuf();
-} // ///////////////////////////////////////////////////////////////////////

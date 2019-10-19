@@ -24,7 +24,9 @@ public:
 	GLdouble radius;
 
 	GLvoid initializeGL(GLsizei width, GLsizei height);
+	GLvoid drawScene(GLvoid);
 private:
 	GLvoid createObjects();
+	void polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude);
 }; // ******************************************************************************************
 

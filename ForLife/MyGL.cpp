@@ -54,3 +54,37 @@ GLvoid MyGL::createObjects() {
 	glPopMatrix();
 	glEndList();
 } // //////////////////////////////////////////////////////////////////////////////
+GLvoid MyGL::drawScene(GLvoid) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glPushMatrix();
+
+	latitude += latinc;
+	longitude += longinc;
+
+	polarView(radius, 0, latitude, longitude);
+
+	glIndexi(RED_INDEX);
+	glCallList(CONE);
+
+	glIndexi(BLUE_INDEX);
+	glCallList(GLOBE);
+
+	glIndexi(GREEN_INDEX);
+	glPushMatrix();
+	glTranslatef(0.8F, -0.65F, 0.0F);
+	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
+	glCallList(CYLINDER);
+	glPopMatrix();
+
+	glPopMatrix();
+
+	SwapBuf();
+} // ///////////////////////////////////////////////////////////////////////
+void MyGL::polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude) {
+	glTranslated(0.0, 0.0, -radius);
+	glRotated(-twist, 0.0, 0.0, 1.0);
+	glRotated(-latitude, 1.0, 0.0, 0.0);
+	glRotated(longitude, 0.0, 0.0, 1.0);
+
+} // //////////////////////////////////////////////////////////////////////
