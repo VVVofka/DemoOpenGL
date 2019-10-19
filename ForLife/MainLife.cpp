@@ -64,7 +64,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 		drawScene();
 	}
-}
+} // ///////////////////////////////////////////////////////////////////////////////
 
 /* main window procedure */
 LONG WINAPI MainWndProc(
@@ -141,7 +141,7 @@ LONG WINAPI MainWndProc(
 	}
 
 	return lRet;
-}
+} // ///////////////////////////////////////////////////////////////////////////////
 
 BOOL bSetupPixelFormat(HDC hdc) {
 	PIXELFORMATDESCRIPTOR pfd, * ppfd;
@@ -173,7 +173,7 @@ BOOL bSetupPixelFormat(HDC hdc) {
 	}
 
 	return TRUE;
-}
+} // ///////////////////////////////////////////////////////////////////////////////
 
 /* OpenGL code */
 
@@ -188,7 +188,7 @@ GLvoid resize(GLsizei width, GLsizei height) {
 	glLoadIdentity();
 	gluPerspective(45.0, aspect, 3.0, 7.0);
 	glMatrixMode(GL_MODELVIEW);
-}
+} // ///////////////////////////////////////////////////////////////////////////
 
 GLvoid createObjects() {
 	GLUquadricObj* quadObj;
@@ -216,7 +216,7 @@ GLvoid createObjects() {
 	gluCylinder(quadObj, 0.3, 0.3, 0.6, 12, 2);
 	glPopMatrix();
 	glEndList();
-}
+} // //////////////////////////////////////////////////////////////////////////////
 
 GLvoid initializeGL(GLsizei width, GLsizei height) {
 	GLfloat     maxObjectSize, aspect;
@@ -243,7 +243,7 @@ GLvoid initializeGL(GLsizei width, GLsizei height) {
 	g.longinc = 2.5F;
 
 	createObjects();
-}
+} // ////////////////////////////////////////////////////////////////////////
 
 void polarView(GLdouble radius, GLdouble twist, GLdouble latitude,
 	GLdouble longitude) {
@@ -252,7 +252,7 @@ void polarView(GLdouble radius, GLdouble twist, GLdouble latitude,
 	glRotated(-latitude, 1.0, 0.0, 0.0);
 	glRotated(longitude, 0.0, 0.0, 1.0);
 
-}
+} // //////////////////////////////////////////////////////////////////////
 
 GLvoid drawScene(GLvoid) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
