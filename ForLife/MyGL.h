@@ -2,9 +2,6 @@
 #include <windows.h> 
 #include <GL/gl.h> 
 #include <GL/glu.h> 
-#define GLOBE    1 
-#define CYLINDER 2 
-#define CONE     3 
 
 class MyGL {
 public:
@@ -15,8 +12,12 @@ public:
 	const int GREEN_INDEX = 14;
 	const int BLUE_INDEX = 16;
 
+	const int GLOBE = 1;
+	const int CYLINDER = 2;
+	const int CONE = 3;
+
 	HDC   ghDC;
-	void SwapBuf() {SwapBuffers(ghDC);}
+	void SwapBuf() { SwapBuffers(ghDC); }
 
 	/* OpenGL globals, defines, and prototypes */
 	GLfloat latitude, longitude, latinc, longinc;

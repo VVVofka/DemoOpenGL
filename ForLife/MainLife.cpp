@@ -193,20 +193,20 @@ GLvoid resize(GLsizei width, GLsizei height) {
 GLvoid createObjects() {
 	GLUquadricObj* quadObj;
 
-	glNewList(GLOBE, GL_COMPILE);
+	glNewList(g.GLOBE, GL_COMPILE);
 	quadObj = gluNewQuadric();
 	gluQuadricDrawStyle(quadObj, GLU_LINE);
 	gluSphere(quadObj, 1.5, 16, 16);
 	glEndList();
 
-	glNewList(CONE, GL_COMPILE);
+	glNewList(g.CONE, GL_COMPILE);
 	quadObj = gluNewQuadric();
 	gluQuadricDrawStyle(quadObj, GLU_FILL);
 	gluQuadricNormals(quadObj, GLU_SMOOTH);
 	gluCylinder(quadObj, 0.3, 0.0, 0.6, 15, 10);
 	glEndList();
 
-	glNewList(CYLINDER, GL_COMPILE);
+	glNewList(g.CYLINDER, GL_COMPILE);
 	glPushMatrix();
 	glRotatef((GLfloat)90.0, (GLfloat)1.0, (GLfloat)0.0, (GLfloat)0.0);
 	glTranslatef((GLfloat)0.0, (GLfloat)0.0, (GLfloat)-1.0);
@@ -265,16 +265,16 @@ GLvoid drawScene(GLvoid) {
 	polarView(g.radius, 0, g.latitude, g.longitude);
 
 	glIndexi(g.RED_INDEX);
-	glCallList(CONE);
+	glCallList(g.CONE);
 
 	glIndexi(g.BLUE_INDEX);
-	glCallList(GLOBE);
+	glCallList(g.GLOBE);
 
 	glIndexi(g.GREEN_INDEX);
 	glPushMatrix();
 	glTranslatef(0.8F, -0.65F, 0.0F);
 	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
-	glCallList(CYLINDER);
+	glCallList(g.CYLINDER);
 	glPopMatrix();
 
 	glPopMatrix();
