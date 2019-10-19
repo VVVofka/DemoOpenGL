@@ -325,37 +325,62 @@ void COGView::DrawScene() {
 	//====== Close block of GL_QUADS commands
 	if(m_bQuad)
 		glEnd();
+	{//÷илиндрик
+		glPushMatrix();		// сохран€ем текущие координаты
+		glTranslated(5, 0, 16);
+		glRotated(-90, 16, 0, 0); // поворачиваем
+		glColor3f(0.9f, 0.f, 0.0f);
+		GLUquadricObj* quadObj;
+		quadObj = gluNewQuadric(); // создаем новый объект дл€ создани€ сфер и цилиндров
+		gluCylinder(quadObj, 0.3, 0.2, 9, 94, 255);
 
-	//срез - жЄлтым цвером
-	glLineWidth(2.0f);
-	glBegin(GL_LINE_STRIP);
-	glColor3f(1.0f, 1.0f, 0.0f);
-	float lastz = m_cPoints[m_cPoints.size() - 1].z;
-	UINT crd = m_cPoints.size() - 1;
-	//		glVertex3f(m_cPoints[crd].x, m_cPoints[crd].y, lastz); 
-	for(UINT x = 0; x < nx; x++) {
-		crd--;
-		glVertex3f(m_cPoints[crd].x, m_cPoints[crd].y, lastz);
+		glPopMatrix();     // возвращаемс€ к старым координатам
+		gluDeleteQuadric(quadObj);
 	}
-	glEnd();
+	{	//нулева€ бела€ лини€
+		glLineWidth(2.0f);
+		glBegin(GL_LINES);
+		glColor3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(xmin, 0, zmax);
+		glVertex3f(xmax, 0, zmax);
+		glEnd();
 
-	glEnable(GL_ALPHA_TEST);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	//полупрозрачна€ средн€€ плоскость
-	glLineWidth(1.0f);
-	glBegin(GL_QUADS);
-	glColor4f(0.0f, 0.2f, 1.f, 0.25f);
-	glVertex3f(xmin, 0, zmin);	//(-16, 0, -16)
-	glVertex3f(xmin, 0, zmax);	//(-16, 0, 16)
-	glVertex3f(xmax, 0, zmax);		//(16, 0, 16)
-	glVertex3f(xmax, 0, zmin);	//(16, 0, -16)
+		glLineWidth(1.0f);
+		glBegin(GL_LINES);
+		glColor3f(1.0f, 1.0f, 1.0f);
+		glVertex3f(xmin, 0, zmax);
+		glVertex3f(xmax, 0, zmax);
+		glEnd();
+	}
+	{	//срез - жЄлтым цвером
+		glLineWidth(2.0f);
+		glBegin(GL_LINE_STRIP);
+		glColor3f(1.0f, 1.0f, 0.0f);
+		float lastz = m_cPoints[m_cPoints.size() - 1].z;
+		UINT crd = m_cPoints.size() - 1;
+		//		glVertex3f(m_cPoints[crd].x, m_cPoints[crd].y, lastz); 
+		for(UINT x = 0; x < nx; x++) {
+			crd--;
+			glVertex3f(m_cPoints[crd].x, m_cPoints[crd].y, lastz);
+		}
+		glEnd();
+	}
+	{	//полупрозрачна€ средн€€ плоскость
+		glEnable(GL_ALPHA_TEST);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glLineWidth(1.0f);
+		glBegin(GL_QUADS);
+		glColor4f(0.0f, 0.2f, 1.f, 0.25f);
+		glVertex3f(xmin, 0, zmin);	//(-16, 0, -16)
+		glVertex3f(xmin, 0, zmax);	//(-16, 0, 16)
+		glVertex3f(xmax, 0, zmax);		//(16, 0, 16)
+		glVertex3f(xmax, 0, zmin);	//(16, 0, -16)
 
-	glDisable(GL_BLEND);
-	glDisable(GL_ALPHA_TEST);
-
-	glEnd();
-
+		glDisable(GL_BLEND);
+		glDisable(GL_ALPHA_TEST);
+		glEnd();
+	}
 	//====== Close the list of OpenGL commands
 	glEndList();
 } // /////////////////////////////////////////////////////////////////////////////////////////////////////////
