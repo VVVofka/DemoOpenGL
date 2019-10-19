@@ -23,6 +23,7 @@ public:
 	GLfloat latitude, longitude, latinc, longinc;
 	GLdouble radius;
 
+	GLvoid initializeGL(GLsizei width, GLsizei height);
 private:
 
 }; // ******************************************************************************************

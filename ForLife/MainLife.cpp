@@ -86,7 +86,7 @@ LONG WINAPI MainWndProc(
 			ghRC = wglCreateContext(g.ghDC);
 			wglMakeCurrent(g.ghDC, ghRC);
 			GetClientRect(hWnd, &rect);
-			initializeGL(rect.right, rect.bottom);
+			g.initializeGL(rect.right, rect.bottom);
 			break;
 
 		case WM_PAINT:
@@ -217,34 +217,6 @@ GLvoid createObjects() {
 	glPopMatrix();
 	glEndList();
 } // //////////////////////////////////////////////////////////////////////////////
-
-GLvoid initializeGL(GLsizei width, GLsizei height) {
-	GLfloat     maxObjectSize, aspect;
-	GLdouble    near_plane, far_plane;
-
-	glClearIndex((GLfloat)g.BLACK_INDEX);
-	glClearDepth(1.0);
-
-	glEnable(GL_DEPTH_TEST);
-
-	glMatrixMode(GL_PROJECTION);
-	aspect = (GLfloat)width / height;
-	gluPerspective(45.0, aspect, 3.0, 7.0);
-	glMatrixMode(GL_MODELVIEW);
-
-	near_plane = 3.0;
-	far_plane = 7.0;
-	maxObjectSize = 3.0F;
-	g.radius = near_plane + maxObjectSize / 2.0;
-
-	g.latitude = 0.0F;
-	g.longitude = 0.0F;
-	g.latinc = 6.0F;
-	g.longinc = 2.5F;
-
-	createObjects();
-} // ////////////////////////////////////////////////////////////////////////
-
 void polarView(GLdouble radius, GLdouble twist, GLdouble latitude,
 	GLdouble longitude) {
 	glTranslated(0.0, 0.0, -radius);
