@@ -12,8 +12,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
-{
-	ID_SEPARATOR,
+{	ID_SEPARATOR,
 	ID_INDICATOR_CAPS,
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
@@ -22,8 +21,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame(){}
 CMainFrame::~CMainFrame(){}
 
-int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
-{
+int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct){
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
@@ -42,17 +40,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-
 	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
-
 	return 0;
-}
-
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
-{
+} // ////////////////////////////////////////////////////////////////////////////////////////
+BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs){
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	return TRUE;
-}
+} // ////////////////////////////////////////////////////////////////////////////////////////

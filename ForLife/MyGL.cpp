@@ -1,9 +1,10 @@
 #include "MyGL.h"
 #pragma warning(push)
-#pragma warning(disable:6031 26451) 
+#pragma warning(disable:26495) 
 
 MyGL::MyGL() {}
 MyGL::~MyGL() {}
+// /////////////////////////////////////////////////////////////////////////
 GLvoid MyGL::initializeGL(GLsizei width, GLsizei height) {
 	GLfloat     maxObjectSize, aspect;
 	GLdouble    near_plane, far_plane;
@@ -103,4 +104,15 @@ GLvoid MyGL::resize(GLsizei width, GLsizei height) {
 	gluPerspective(45.0, aspect, 3.0, 7.0);
 	glMatrixMode(GL_MODELVIEW);
 } // ///////////////////////////////////////////////////////////////////////////
+GLvoid MyGL::SetBkColor(COLORREF m_BkClr) {
+	//====== Split the color to 3 components
+	GLclampf red = GetRValue(m_BkClr) / 255.f,
+		green = GetGValue(m_BkClr) / 255.f,
+		blue = GetBValue(m_BkClr) / 255.f;
+	//====== Set the clear (background) color
+	glClearColor(red, green, blue, 0.f);
+
+	//====== Actual background erasure
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+} // /////////////////////////////////////////////////////////////////////////////////
 #pragma warning(pop)

@@ -41,7 +41,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		return FALSE;
 	ShowWindow(ghWnd, nCmdShow);	//  show and update main window 
 	UpdateWindow(ghWnd);
-
+	g.SetBkColor(RGB(0, 0, 95));
 	while(1) {	//	 animation loop 
 		 // Process all pending messages
 		while(PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE) {
@@ -52,7 +52,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			else 
 				return TRUE;
 		}
-		g.drawScene();
+		g.drawScene();		// DRAWSCENE !!!
 	}
 } // ///////////////////////////////////////////////////////////////////////////////
 LONG WINAPI MainWndProc(	//	 main window procedure
@@ -71,7 +71,7 @@ LONG WINAPI MainWndProc(	//	 main window procedure
 			ghRC = wglCreateContext(g.ghDC);
 			wglMakeCurrent(g.ghDC, ghRC);
 			GetClientRect(hWnd, &rect);
-			g.initializeGL(rect.right, rect.bottom);
+			g.initializeGL(rect.right, rect.bottom);	// INITIALIZE
 			break;
 		case WM_PAINT:
 			BeginPaint(hWnd, &ps);
@@ -120,34 +120,26 @@ LONG WINAPI MainWndProc(	//	 main window procedure
 	return lRet;
 } // ///////////////////////////////////////////////////////////////////////////////
 BOOL bSetupPixelFormat(HDC hdc) {
-	PIXELFORMATDESCRIPTOR pfd, * ppfd;
-	int pixelformat;
+	PIXELFORMATDESCRIPTOR pfd;
+	pfd.nSize = sizeof(PIXELFORMATDESCRIPTOR);
+	pfd.nVersion = 1;
+	pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
+	pfd.dwLayerMask = PFD_MAIN_PLANE;
+	pfd.iPixelType = PFD_TYPE_COLORINDEX;
+	pfd.cColorBits = 8;
+	pfd.cDepthBits = 16;
+	pfd.cAccumBits = 0;
+	pfd.cStencilBits = 0;
 
-	ppfd = &pfd;
-
-	ppfd->nSize = sizeof(PIXELFORMATDESCRIPTOR);
-	ppfd->nVersion = 1;
-	ppfd->dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL |
-		PFD_DOUBLEBUFFER;
-	ppfd->dwLayerMask = PFD_MAIN_PLANE;
-	ppfd->iPixelType = PFD_TYPE_COLORINDEX;
-	ppfd->cColorBits = 8;
-	ppfd->cDepthBits = 16;
-	ppfd->cAccumBits = 0;
-	ppfd->cStencilBits = 0;
-
-	pixelformat = ChoosePixelFormat(hdc, ppfd);
-
-	if((pixelformat = ChoosePixelFormat(hdc, ppfd)) == 0) {
+	int pixelformat = ChoosePixelFormat(hdc, &pfd);
+	if(pixelformat == 0) {
 		MessageBox(NULL, "ChoosePixelFormat failed", "Error", MB_OK);
 		return FALSE;
 	}
-
-	if(SetPixelFormat(hdc, pixelformat, ppfd) == FALSE) {
+	if(SetPixelFormat(hdc, pixelformat, &pfd) == FALSE) {
 		MessageBox(NULL, "SetPixelFormat failed", "Error", MB_OK);
 		return FALSE;
 	}
-
 	return TRUE;
 } // ///////////////////////////////////////////////////////////////////////////////
 

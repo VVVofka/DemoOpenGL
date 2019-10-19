@@ -1,5 +1,8 @@
 #pragma once
 #include <windows.h> 
+#include <wingdi.h> 
+//#define RGB(r,g,b)          ((COLORREF)(((BYTE)(r)|((WORD)((BYTE)(g))<<8))|(((DWORD)(BYTE)(b))<<16)))
+
 //#include <winbase.h> 
 
 #include "MyGL.h"

@@ -1,5 +1,6 @@
 #pragma once
 #include <windows.h> 
+#include <wingdi.h> 
 #include <GL/gl.h> 
 #include <GL/glu.h> 
 
@@ -26,6 +27,7 @@ public:
 	GLvoid initializeGL(GLsizei width, GLsizei height);
 	GLvoid drawScene(GLvoid);
 	GLvoid resize(GLsizei width, GLsizei height);
+	GLvoid SetBkColor(COLORREF m_BkClr);
 private:
 	GLvoid createObjects();
 	void polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude);
