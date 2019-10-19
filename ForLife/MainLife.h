@@ -13,8 +13,8 @@ CHAR szAppName[] = "Win OpenGL";
 HWND  ghWnd;
 HGLRC ghRC;
 
-#define WIDTH           300 
-#define HEIGHT          200 
+#define WIDTH           800 
+#define HEIGHT          400 
 
 LONG WINAPI MainWndProc(HWND, UINT, WPARAM, LPARAM);
 BOOL bSetupPixelFormat(HDC);

@@ -9,8 +9,8 @@ GLvoid MyGL::initializeGL(GLsizei width, GLsizei height) {
 	GLfloat     maxObjectSize, aspect;
 	GLdouble    near_plane, far_plane;
 
-	glClearIndex((GLfloat)BLACK_INDEX);
-	glClearDepth(1.0);
+	//glClearIndex(0);
+	//glClearDepth(1.0);
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -60,7 +60,6 @@ GLvoid MyGL::createObjects() {
 } // //////////////////////////////////////////////////////////////////////////////
 GLvoid MyGL::drawScene(GLvoid) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glPushMatrix();
 
 	latitude += latinc;
@@ -68,13 +67,14 @@ GLvoid MyGL::drawScene(GLvoid) {
 
 	polarView(radius, 0, latitude, longitude);
 
-	glIndexi(RED_INDEX);
+	glColor3f(1.0, 0, 0);
 	glCallList(CONE);
 
-	glIndexi(BLUE_INDEX);
+	GLfloat BlueCol[3] = {0, 0, 1};
+	glColor3fv(BlueCol); /* синий */
 	glCallList(GLOBE);
 
-	glIndexi(GREEN_INDEX);
+	glColor3ub(0, 255, 0); // зелёный
 	glPushMatrix();
 	glTranslatef(0.8F, -0.65F, 0.0F);
 	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
@@ -82,15 +82,13 @@ GLvoid MyGL::drawScene(GLvoid) {
 	glPopMatrix();
 
 	glPopMatrix();
-
 	SwapBuf();
 } // ///////////////////////////////////////////////////////////////////////
 void MyGL::polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude) {
 	glTranslated(0.0, 0.0, -radius);
-	glRotated(-twist, 0.0, 0.0, 1.0);
-	glRotated(-latitude, 1.0, 0.0, 0.0);
-	glRotated(longitude, 0.0, 0.0, 1.0);
-
+	//glRotated(-twist, 0.0, 0.0, 1.0);
+	//glRotated(-latitude, 1.0, 0.0, 0.0);
+	//glRotated(longitude, 0.0, 0.0, 1.0);
 } // //////////////////////////////////////////////////////////////////////
 GLvoid MyGL::resize(GLsizei width, GLsizei height) {
 	GLfloat aspect;
@@ -115,4 +113,31 @@ GLvoid MyGL::SetBkColor(COLORREF m_BkClr) {
 	//====== Actual background erasure
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 } // /////////////////////////////////////////////////////////////////////////////////
+GLvoid MyGL::drawTest(GLvoid) {
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glPushMatrix();
+
+	latitude += latinc;
+	longitude += longinc;
+
+	polarView(radius, 0, latitude, longitude);
+
+	glColor3f(1.0, 0, 0);
+	glCallList(CONE);
+
+	GLfloat BlueCol[3] = {0, 0, 1}; 
+	glColor3fv(BlueCol); /* синий */
+	glCallList(GLOBE);
+
+	glColor3ub(0, 255, 0); // зелёный
+	glPushMatrix();
+	glTranslatef(0.8F, -0.65F, 0.0F);
+	glRotatef(30.0F, 1.0F, 0.5F, 1.0F);
+	glCallList(CYLINDER);
+	glPopMatrix();
+
+	glPopMatrix();
+	SwapBuf();
+} // //////////////////////////////////////////////////////////////////////////////
+
 #pragma warning(pop)

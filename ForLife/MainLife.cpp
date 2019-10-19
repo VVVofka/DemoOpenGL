@@ -41,7 +41,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		return FALSE;
 	ShowWindow(ghWnd, nCmdShow);	//  show and update main window 
 	UpdateWindow(ghWnd);
-	g.SetBkColor(RGB(0, 0, 95));
 	while(1) {	//	 animation loop 
 		 // Process all pending messages
 		while(PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE) == TRUE) {
@@ -52,8 +51,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			else 
 				return TRUE;
 		}
-		g.drawScene();		// DRAWSCENE !!!
-	}
+		//g.drawScene();		// DRAWSCENE !!!
+		g.drawTest();
+	}	// while(1)
 } // ///////////////////////////////////////////////////////////////////////////////
 LONG WINAPI MainWndProc(	//	 main window procedure
 	HWND    hWnd,
@@ -72,6 +72,7 @@ LONG WINAPI MainWndProc(	//	 main window procedure
 			wglMakeCurrent(g.ghDC, ghRC);
 			GetClientRect(hWnd, &rect);
 			g.initializeGL(rect.right, rect.bottom);	// INITIALIZE
+			g.SetBkColor(RGB(0, 0, 95));
 			break;
 		case WM_PAINT:
 			BeginPaint(hWnd, &ps);
