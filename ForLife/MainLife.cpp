@@ -96,7 +96,7 @@ LONG WINAPI MainWndProc(
 
 		case WM_SIZE:
 			GetClientRect(hWnd, &rect);
-			resize(rect.right, rect.bottom);
+			g.resize(rect.right, rect.bottom);
 			break;
 
 		case WM_CLOSE:
@@ -177,17 +177,6 @@ BOOL bSetupPixelFormat(HDC hdc) {
 
 /* OpenGL code */
 
-GLvoid resize(GLsizei width, GLsizei height) {
-	GLfloat aspect;
 
-	glViewport(0, 0, width, height);
-
-	aspect = (GLfloat)width / height;
-
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(45.0, aspect, 3.0, 7.0);
-	glMatrixMode(GL_MODELVIEW);
-} // ///////////////////////////////////////////////////////////////////////////
 
 

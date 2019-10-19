@@ -14,8 +14,8 @@ HGLRC ghRC;
 LONG WINAPI MainWndProc(HWND, UINT, WPARAM, LPARAM);
 BOOL bSetupPixelFormat(HDC);
 
-GLvoid resize(GLsizei, GLsizei);
-GLvoid initializeGL(GLsizei, GLsizei);
-GLvoid drawScene(GLvoid);
-void polarView(GLdouble, GLdouble, GLdouble, GLdouble);
+//GLvoid resize(GLsizei, GLsizei);
+//GLvoid initializeGL(GLsizei, GLsizei);
+//GLvoid drawScene(GLvoid);
+//void polarView(GLdouble, GLdouble, GLdouble, GLdouble);
 

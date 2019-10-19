@@ -88,3 +88,15 @@ void MyGL::polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdoubl
 	glRotated(longitude, 0.0, 0.0, 1.0);
 
 } // //////////////////////////////////////////////////////////////////////
+GLvoid MyGL::resize(GLsizei width, GLsizei height) {
+	GLfloat aspect;
+
+	glViewport(0, 0, width, height);
+
+	aspect = (GLfloat)width / height;
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(45.0, aspect, 3.0, 7.0);
+	glMatrixMode(GL_MODELVIEW);
+} // ///////////////////////////////////////////////////////////////////////////

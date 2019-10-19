@@ -25,6 +25,7 @@ public:
 
 	GLvoid initializeGL(GLsizei width, GLsizei height);
 	GLvoid drawScene(GLvoid);
+	GLvoid resize(GLsizei width, GLsizei height);
 private:
 	GLvoid createObjects();
 	void polarView(GLdouble radius, GLdouble twist, GLdouble latitude, GLdouble longitude);
