@@ -27,16 +27,16 @@
     <ClInclude Include="TestGlut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\VLife\VLife\PaternLaysX2.h">
+    <ClInclude Include="VLife\PaternLaysX2.h">
       <Filter>Header Files\VLife</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\VLife\VLife\PaternLayX2.h">
+    <ClInclude Include="VLife\PaternLayX2.h">
       <Filter>Header Files\VLife</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\VLife\VLife\Patterns.h">
+    <ClInclude Include="VLife\Patterns.h">
       <Filter>Header Files\VLife</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\VLife\VLife\Point.h">
+    <ClInclude Include="VLife\Point.h">
       <Filter>Header Files\VLife</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,13 +47,13 @@
     <ClCompile Include="MainBak.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\VLife\VLife\PaternLaysX2.cpp">
+    <ClCompile Include="VLife\PaternLaysX2.cpp">
       <Filter>Source Files\VLife</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\VLife\VLife\PaternLayX2.cpp">
+    <ClCompile Include="VLife\PaternLayX2.cpp">
       <Filter>Source Files\VLife</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\VLife\VLife\Patterns.cpp">
+    <ClCompile Include="VLife\Patterns.cpp">
       <Filter>Source Files\VLife</Filter>
     </ClCompile>
   </ItemGroup>

@@ -26,7 +26,7 @@ public:
 		int u = (int)((double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min);
 		v[u] = (v[u] + 1) & 1;
 
-		lays.Run();
+		lays.Run);
 
 	} // /////////////////////////////////////////////////////////////////////////////////////////
 private:

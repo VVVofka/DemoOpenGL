@@ -131,19 +131,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\VLife\VLife\PaternLaysX2.cpp" />
-    <ClCompile Include="..\..\VLife\VLife\PaternLayX2.cpp" />
-    <ClCompile Include="..\..\VLife\VLife\Patterns.cpp" />
     <ClCompile Include="MainBak.cpp" />
     <ClCompile Include="MainLifeGlut.cpp" />
+    <ClCompile Include="VLife\PaternLaysX2.cpp" />
+    <ClCompile Include="VLife\PaternLayX2.cpp" />
+    <ClCompile Include="VLife\Patterns.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\VLife\VLife\PaternLaysX2.h" />
-    <ClInclude Include="..\..\VLife\VLife\PaternLayX2.h" />
-    <ClInclude Include="..\..\VLife\VLife\Patterns.h" />
-    <ClInclude Include="..\..\VLife\VLife\Point.h" />
     <ClInclude Include="..\OG\Info.h" />
     <ClInclude Include="TestGlut.h" />
+    <ClInclude Include="VLife\PaternLaysX2.h" />
+    <ClInclude Include="VLife\PaternLayX2.h" />
+    <ClInclude Include="VLife\Patterns.h" />
+    <ClInclude Include="VLife\Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
