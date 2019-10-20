@@ -3,6 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
+#include "..\..\VLife\VLife\PaternLaysX2.h"
 //#define MAINENABL
 struct Para {
 	Para() { x = 0; y = 0; };
@@ -11,10 +12,12 @@ struct Para {
 	int Min() { return (x > y) ? y : x; }
 	int x, y;
 }; // ********************************************************************************************
-class TestGGlut {
+class TestGlut {
 public:
+	PaternLaysX2 lays = PaternLaysX2(64, TRUE, FALSE);
+
 	const static int sz = 6;
-	TestGGlut() {
+	TestGlut() {
 		v[2] = v[7] = v[17] = v[18] = 1;
 	}
 	GLbyte v[sz * sz] = {};
@@ -23,6 +26,8 @@ public:
 		int range_min = 0, range_max = sz * sz;
 		int u = (int)((double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min);
 		v[u] = (v[u] + 1) & 1;
-	}
+	} // /////////////////////////////////////////////////////////////////////////////////////////
+private:
+
 }; // ********************************************************************************************
 

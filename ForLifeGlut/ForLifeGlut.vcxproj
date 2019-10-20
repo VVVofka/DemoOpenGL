@@ -70,7 +70,11 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ReferencePath>$(ReferencePath)</ReferencePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -92,6 +96,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,12 +131,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\VLife\VLife\PaternLaysX2.cpp" />
+    <ClCompile Include="..\..\VLife\VLife\PaternLayX2.cpp" />
+    <ClCompile Include="..\..\VLife\VLife\Patterns.cpp" />
     <ClCompile Include="MainBak.cpp" />
     <ClCompile Include="MainLifeGlut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\VLife\VLife\PaternLaysX2.h" />
+    <ClInclude Include="..\..\VLife\VLife\PaternLayX2.h" />
+    <ClInclude Include="..\..\VLife\VLife\Patterns.h" />
+    <ClInclude Include="..\..\VLife\VLife\Point.h" />
     <ClInclude Include="..\OG\Info.h" />
-    <ClInclude Include="TestGGlut.h" />
+    <ClInclude Include="TestGlut.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

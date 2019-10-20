@@ -3,7 +3,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
-#include "TestGGlut.h"
+#include "TestGlut.h"
 #ifdef MAINENABL
 
 TestGGlut t = TestGGlut();

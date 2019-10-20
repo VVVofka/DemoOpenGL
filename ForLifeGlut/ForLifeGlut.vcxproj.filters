@@ -13,13 +13,31 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\VLife">
+      <UniqueIdentifier>{101cb8a5-8cab-4fe9-89c9-d49ec0379115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\VLife">
+      <UniqueIdentifier>{104526bb-2146-48b6-a37e-9c9377782e5c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OG\Info.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestGGlut.h">
+    <ClInclude Include="TestGlut.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VLife\VLife\PaternLaysX2.h">
+      <Filter>Header Files\VLife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VLife\VLife\PaternLayX2.h">
+      <Filter>Header Files\VLife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VLife\VLife\Patterns.h">
+      <Filter>Header Files\VLife</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\VLife\VLife\Point.h">
+      <Filter>Header Files\VLife</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +46,15 @@
     </ClCompile>
     <ClCompile Include="MainBak.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VLife\VLife\PaternLaysX2.cpp">
+      <Filter>Source Files\VLife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VLife\VLife\PaternLayX2.cpp">
+      <Filter>Source Files\VLife</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\VLife\VLife\Patterns.cpp">
+      <Filter>Source Files\VLife</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

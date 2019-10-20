@@ -1,20 +1,20 @@
 #include <GL/glut.h>  
-#include "TestGGlut.h"
+#include "TestGlut.h"
 
 #ifndef MAINENABL
-TestGGlut t = TestGGlut();
+TestGlut t = TestGlut();
 Para inWnd;
 GLint szCell=0;
 
 void init(void) {
-	glClearColor(0.0, 0.0, 0.1, 0.0);
+	glClearColor(0.0f, 0.0f, 0.1f, 0.0f);
 	glShadeModel(GL_FLAT);
 } // /////////////////////////////////////////////////////////////////////////////////
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPushMatrix();
 	glColor3f(1.0, 1.0, 0.0);
-	glPointSize(szCell);
+	glPointSize((GLfloat)szCell);
 	glBegin(GL_POINTS);
 	//glVertex2f(0.5, 0.5);
 	//glVertex2f(1.5, 1.5);
@@ -26,7 +26,7 @@ void display(void) {
 	for(int y = 0, n = 0; y < t.sz; y++) {
 		for(int x = 0; x < t.sz; x++, n++) {
 			if(t.v[n])
-				glVertex2f(x + 0.5, y + 0.5);
+				glVertex2f(x + 0.5f, y + 0.5f);
 		}
 	}
 	glEnd();
@@ -43,8 +43,8 @@ void reshape(int w, int h) {
 	szCell = inWnd.Min() / t.sz - 1;
 	GLfloat retv[2];
 	glGetFloatv(GL_POINT_SIZE_RANGE, retv);
-	if(szCell < retv[0]) szCell = retv[0];
-	if(szCell > retv[1]) szCell = retv[1];
+	if(szCell < retv[0]) szCell = (GLint)retv[0];
+	if(szCell > retv[1]) szCell = (GLint)retv[1];
 	//glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	if(w > h)
 		glViewport((GLsizei)((w - h) / 2), 0, (GLsizei)h, (GLsizei)h);
