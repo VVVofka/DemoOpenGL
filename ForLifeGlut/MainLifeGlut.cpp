@@ -38,7 +38,7 @@ void init(void) {
 	glLoadIdentity();
 	glOrtho(0.0, t.sz + 1., 0.0, t.sz + 1., -1.0, 1.0);
 } // ///////////////////////////////////////////////////////////////////////////////////////////////
-/*
+/* before stash 2
 Определим параметры окна , display mode
 * (single buffer and RGBA). Откроем окно с фразой "hello"
 * в title bar.
