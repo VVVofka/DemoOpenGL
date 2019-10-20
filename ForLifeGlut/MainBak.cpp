@@ -6,7 +6,6 @@ TestGGlut t = TestGGlut();
 Para inWnd;
 GLint szCell=0;
 
-GLfloat spin = 0.0;
 void init(void) {
 	glClearColor(0.0, 0.0, 0.1, 0.0);
 	glShadeModel(GL_FLAT);
@@ -36,19 +35,16 @@ void display(void) {
 	glutSwapBuffers();
 } // /////////////////////////////////////////////////////////////////////////////////
 void spinDisplay(void) {
-	t.Rand();
-	GLfloat sum = 0;
-	for(int n = 0; n < 9; n++)
-		sum += t.v[n];
-	spin = spin + sum;
-	if(spin > 360.0) spin = spin - 360.0;
+	t.Rand();				// MAIN WORK !!!
 	glutPostRedisplay();
 } // /////////////////////////////////////////////////////////////////////////////////
 void reshape(int w, int h) {
 	inWnd.set(w, h);
-	int min = w > h ? h : w;
-	szCell = min / t.sz - 1;
-	if(szCell < 1) szCell = 1;
+	szCell = inWnd.Min() / t.sz - 1;
+	GLfloat retv[2];
+	glGetFloatv(GL_POINT_SIZE_RANGE, retv);
+	if(szCell < retv[0]) szCell = retv[0];
+	if(szCell > retv[1]) szCell = retv[1];
 	//glViewport(0, 0, (GLsizei)w, (GLsizei)h);
 	if(w > h)
 		glViewport((GLsizei)((w - h) / 2), 0, (GLsizei)h, (GLsizei)h);

@@ -1,4 +1,5 @@
 #pragma once
+//#include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
@@ -7,6 +8,7 @@ struct Para {
 	Para() { x = 0; y = 0; };
 	Para(int X, int Y) { x = X; y = Y; };
 	void set(int X, int Y) { x = X; y = Y; };
+	int Min() { return (x > y) ? y : x; }
 	int x, y;
 }; // ********************************************************************************************
 class TestGGlut {
