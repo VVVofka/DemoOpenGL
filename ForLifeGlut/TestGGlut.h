@@ -2,6 +2,13 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/freeglut.h>
+//#define MAINENABL
+struct Para {
+	Para() { x = 0; y = 0; };
+	Para(int X, int Y) { x = X; y = Y; };
+	void set(int X, int Y) { x = X; y = Y; };
+	int x, y;
+}; // ********************************************************************************************
 class TestGGlut {
 public:
 	const static int sz = 6;
@@ -12,8 +19,8 @@ public:
 	void Rand() {
 		int rnd = rand();
 		int range_min = 0, range_max = sz * sz;
-		int u = (double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min;
+		int u = (int)((double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min);
 		v[u] = (v[u] + 1) & 1;
 	}
-};
+}; // ********************************************************************************************
 

@@ -4,15 +4,11 @@
 #include <GL/glu.h>
 #include <GL/freeglut.h>
 #include "TestGGlut.h"
+#ifdef MAINENABL
 
 TestGGlut t = TestGGlut();
 void display(void) {
-	/* стираем */
-	//glClear(GL_COLOR_BUFFER_BIT);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	/* рисуем белый прямоугольник
-	* (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)
-	*/
 	glColor3f(1.0, 1.0, 0.0);
 	glBegin(GL_POINTS);
 	for(int y = 0, n = 0; y < t.sz; y++) {
@@ -26,38 +22,18 @@ void display(void) {
 		}
 	}
 	glEnd();
-	/* поехали ! */
 	glFlush();
 } // /////////////////////////////////////////////////////////////////////////////////////////
 void init(void) {
-	/* установим черный фон */
-	glClearColor(0.0, 0.0, 70.0, 0.0);
-
-	/* инициализация viewing values */
+	glShadeModel(GL_FLAT);
+	glClearColor(0.0, 0.0, 0.2, 0.0);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	glOrtho(0.0, t.sz + 1., 0.0, t.sz + 1., -1.0, 1.0);
 } // ///////////////////////////////////////////////////////////////////////////////////////////////
-/* before stash 2
-Определим параметры окна , display mode
-* (single buffer and RGBA). Откроем окно с фразой "hello"
-* в title bar.
-*/
 void fnc() {
 	t.Rand();
-	//glutPostRedisplay();
-} // ///////////////////////////////////////////////////////////////////////////////////////
-int main(int argc, char** argv) {
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-	glutInitWindowSize(250, 250);
-	glutInitWindowPosition(700, 500);
-	glutCreateWindow("hello");
-	init();
-	glutIdleFunc(fnc);
-	glutDisplayFunc(display);
-	glutMainLoop();
-	return 0; /* ISO C requires main to return int. */
+	glutPostRedisplay();
 } // ///////////////////////////////////////////////////////////////////////////////////////
 void reshape(int w, int h) {
 	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
@@ -65,3 +41,28 @@ void reshape(int w, int h) {
 	glLoadIdentity();
 	gluOrtho2D(0, 0, (GLdouble)w, (GLdouble)h);
 } // ///////////////////////////////////////////////////////////////////////////////////////
+void mouse(int button, int state, int x, int y) {
+	switch(button) {
+		case GLUT_LEFT_BUTTON:
+			if(state == GLUT_DOWN) 
+				glutIdleFunc(fnc); 
+			break;
+		case GLUT_RIGHT_BUTTON: 
+			if(state == GLUT_DOWN) 
+				glutIdleFunc(NULL); 
+			break;
+	}
+} // ///////////////////////////////////////////////////////////////////////////////////////
+int main(int argc, char** argv) {
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitWindowSize(250, 250);
+	glutInitWindowPosition(700, 500);
+	glutCreateWindow("hello");
+	init();
+	glutDisplayFunc(display);
+	glutMouseFunc(mouse);
+	glutMainLoop();
+	return 0;
+} // ///////////////////////////////////////////////////////////////////////////////////////
+#endif MAINENABL
