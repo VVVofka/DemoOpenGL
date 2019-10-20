@@ -32,4 +32,6 @@ private:
 }; // ******************************************************************************************
 //2d http://www.cyberforum.ru/opengl/thread569240.html https://habr.com/ru/post/111175/
 //https://www.helloworld.ru/texts/comp/games/opengl/opengl/2.htm
-//https://www.rsdn.org/article/opengl/ogltutor.xml
+//Объёмный учебник https://www.rsdn.org/article/opengl/ogltutor.xml
+// инстал линукс https://habr.com/ru/post/177885/
+
