@@ -149,6 +149,7 @@
     <ResourceCompile Include="OG.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Links.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="OG.h" />
     <ClInclude Include="OGDoc.h" />

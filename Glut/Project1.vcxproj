@@ -126,6 +126,9 @@
   <ItemGroup>
     <ClCompile Include="MainGlut.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\OG\Info.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
