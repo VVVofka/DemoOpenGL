@@ -5,7 +5,7 @@ typedef unsigned __int8 atype;
 typedef unsigned deeptype;	// uper cells Info (for transform)
 // слой - клетка - атом
 
-class PaternLayX2{
+class PaternLayX2 {
 public:
 	PaternLayX2(int size_side_in_atom, BOOL DelayTransform);
 	~PaternLayX2();
@@ -22,14 +22,9 @@ public:
 	atype val4Up2();	// for second pass corner (once)
 	atype val4Up2x(int ofset_in_atom);	// for second pass x-axe along (x=1..sz-1; y=0)
 	atype val4Up2y(int ofset_in_atom);	// for second pass y-axe along (x=0; y=1..sz-1)
-	deeptype transform(int x_v, int y_v, deeptype h);
 
 	atype RecursGetVal(int x_v, int y_v);
-
-	void transform0(int x_v, int y_v, deeptype h);
-	void transform1(int x_v, int y_v, deeptype h);
-	void transform2(int x_v, int y_v, deeptype h);
-	void transform3(int x_v, int y_v, deeptype h);
+	void transform(int x_v, int y_v, deeptype h);
 
 	inline int Coord2Atom(int x, int y) { return x + y * sz; }
 	inline int Coord2Cell(int x, int y) { return x / BASE + (y / BASE) * cntRowCell; }
@@ -42,5 +37,6 @@ private:
 	deeptype getPursH(deeptype h);
 	Patterns* patterns;
 	unsigned getVal(pattertype);
+	void getQuadro(int x, int y, atype** p);
 }; // ******************************************************************************************
 

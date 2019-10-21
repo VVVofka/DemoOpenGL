@@ -55,46 +55,6 @@ atype PaternLayX2::val4Up2() {
 	ret += v[vcnt - 1];
 	return ret;
 } // /////////////////////////////////////////////////////////////
-deeptype PaternLayX2::transform(int x, int y, deeptype h) { // only BASE==2
-	if(x >= sz) x -= sz;
-	if(y >= sz) y -= sz;
-	int ofs = Coord2Atom(x, y);
-	pattertype inPattern = v[ofs] > 0 ? 1 : 0;	// (2x2)<<1 | h
-	inPattern += v[ofs + 1] > 0 ? 2 : 0;
-	int ofs2 = ofs + sz;
-	inPattern += v[ofs2] > 0 ? 4 : 0;
-	inPattern += v[ofs2 + 1] > 0 ? 8 : 0;
-	deeptype pursh = getPursH(h);
-	pattertype transformedCell = patterns->at((inPattern << 1) | pursh);
-
-	// save result & add to h
-	unsigned sumCell;
-	if(bDelayTransform) {
-		sumCell = getVal(inPattern);
-		v[ofs] = transformedCell & 1;
-		v[ofs + 1] = transformedCell & 2 ? 1 : 0;
-		v[ofs2] = transformedCell & 4 ? 1 : 0;
-		v[ofs2 + 1] = transformedCell & 8 ? 1 : 0;
-	}
-	else {
-		sumCell = (v[ofs] = transformedCell & 1);
-		sumCell += (v[ofs + 1] = transformedCell & 2 ? 1 : 0);
-		sumCell += (v[ofs2] = transformedCell & 4 ? 1 : 0);
-		sumCell += (v[ofs2 + 1] = transformedCell & 8 ? 1 : 0);
-	}
-	if(sumCell < (BASE * BASE) / 2)
-		h <<= 1;
-	else if(sumCell > (BASE * BASE) / 2) {
-		h <<= 1;
-		h |= 1;
-	}
-	else {
-		unsigned tmp = h & 1;	// TODO: add tmp = ~h & 1
-		h <<= 1;
-		h |= tmp;
-	}
-	return h;
-} // ////////////////////////////////////////////////////////////////
 unsigned PaternLayX2::getVal(pattertype i) {
 	unsigned r = (i & 1);
 	r += (i >>= 1) & 1;
