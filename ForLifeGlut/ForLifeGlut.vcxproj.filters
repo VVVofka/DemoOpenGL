@@ -56,5 +56,8 @@
     <ClCompile Include="VLife\Patterns.cpp">
       <Filter>Source Files\VLife</Filter>
     </ClCompile>
+    <ClCompile Include="VLife\RecursGet.cpp">
+      <Filter>Source Files\VLife</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

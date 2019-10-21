@@ -1,4 +1,5 @@
 #include "PaternLayX2.h"
+// addon PaternLayX2
 
 //o o o		
 //3 4 o   order calls dnLay->RecursGetVal1(x,y)

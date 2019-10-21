@@ -136,6 +136,7 @@
     <ClCompile Include="VLife\PaternLaysX2.cpp" />
     <ClCompile Include="VLife\PaternLayX2.cpp" />
     <ClCompile Include="VLife\Patterns.cpp" />
+    <ClCompile Include="VLife\RecursGet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OG\Info.h" />

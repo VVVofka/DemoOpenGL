@@ -109,25 +109,31 @@ deeptype PaternLayX2::getPursH(deeptype h) {
 	if(ret > 1) return 1;
 	return 0;
 } // ///////////////////////////////////////////////////////////////
+//o o o		
+//3 4 o   order calls dnLay->transform1(x,y,h)
+//1 2 o    1: start point
 deeptype PaternLayX2::transform1(int x, int y, deeptype h) { // only BASE==2
-	if(x >= sz) x -= sz;
-	if(y >= sz) y -= sz;
-	int x2 = x + x, y2 = y + y;
-	int ofs1 = Coord2Atom(x2, y2);
-	pattertype a = v[ofs1] > 0 ? 1 : 0;
-	a += v[ofs1 + 1] > 0 ? 2 : 0;
-	int ofs2 = ofs1 + sz;
-	a += v[ofs2] > 0 ? 4 : 0;
-	a += v[ofs2 + 1] > 0 ? 8 : 0;
+	atype* p0 = v + x + y * sz;	// left bottom
+	x <<= 1;  y <<= 1;
+
+	// get pattern
+	pattertype a = *p0 > 0 ? 1 : 0;
+	a += *(p0 + 1) > 0 ? 2 : 0;
+	atype* p2 = p0 + sz;	// left top
+	a += *p2 > 0 ? 4 : 0;
+	a += *(p2 + 1) > 0 ? 8 : 0;
 	deeptype pursh = getPursH(h);
 	a = (a << 1) + pursh;
 	pattertype m = patterns->at(a);
 
-	int typeHnew = v[ofs1] = m & 1;
-	typeHnew += (v[ofs1 + 1] = m & 2 ? 1 : 0);
-	typeHnew += (v[ofs2] = m & 4 ? 1 : 0);
-	typeHnew += (v[ofs2 + 1] = m & 8 ? 1 : 0);
+	// save
+	*p0 = m & 1;
+	*(p0 + 1) = m & 2 ? 1 : 0;
+	*p2 = m & 4 ? 1 : 0;
+	*(p2 + 1) = m & 8 ? 1 : 0;
+
 	if(dnLay != nullptr) {	// если внизу есть слой, то
+		int typeHnew = *p0 +*(p0 + 1) + *p2 +*(p2 + 1);
 		h <<= 1;
 		if(typeHnew > (BASE * BASE) / 2)
 			h++;
