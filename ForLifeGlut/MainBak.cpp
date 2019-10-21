@@ -24,8 +24,8 @@ void display(void) {
 	//glVertex2f(1.5, 1.5);
 	//glVertex2f(2.5, 2.5);
 
-	for(int y = 0, n = 0; y < t.sz; y++) {
-		for(int x = 0; x < t.sz; x++, n++) {
+	for(int y = 0, n = 0; y < t.size(); y++) {
+		for(int x = 0; x < t.size(); x++, n++) {
 			if(t[n])
 				glVertex2f(x + 0.5f, y + 0.5f);
 		}
@@ -38,12 +38,12 @@ void display(void) {
 } // /////////////////////////////////////////////////////////////////////////////////
 void spinDisplay(void) {
 	t.Transform();				// MAIN WORK !!!
-	t.Rand();
+	//t.Rand();
 	glutPostRedisplay();
 } // /////////////////////////////////////////////////////////////////////////////////
 void reSize(int w, int h) {
 	inWnd.set(w, h);
-	szCell = inWnd.Min() / t.sz - 1;
+	szCell = inWnd.Min() / t.size() - 1;
 	GLfloat retv[2];
 	glGetFloatv(GL_POINT_SIZE_RANGE, retv);
 	if(szCell < retv[0]) szCell = (GLint)retv[0];
@@ -55,7 +55,7 @@ void reSize(int w, int h) {
 		glViewport(0, (GLsizei)((h - w) / 2), (GLsizei)w, (GLsizei)w);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0.0, t.sz, 0.0, t.sz);
+	gluOrtho2D(0.0, t.size(), 0.0, t.size());
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 } // /////////////////////////////////////////////////////////////////////////////////

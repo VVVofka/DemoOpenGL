@@ -9,7 +9,6 @@ public:
 	PaternLayX2(int size_side_in_atom, BOOL DelayGetVal, BOOL DelayTransform);
 	~PaternLayX2();
 	int sz; // длина стороны слоя в атомах
-	int cntRowCell; //  площадь одного ряда cell в atom
 	atype* v;	// base array
 	BOOL bDelayGetVal;
 	BOOL bDelayTransform;
@@ -18,7 +17,6 @@ public:
 	void Transform();
 
 	inline int Coord2Atom(int x, int y) { return x + y * sz; }
-	inline int Coord2Cell(int x, int y) { return x / BASE + (y / BASE) * cntRowCell; }
 
 	PaternLayX2* dnLay;	// нижележащий слой
 protected:
