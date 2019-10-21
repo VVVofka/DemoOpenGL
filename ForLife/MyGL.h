@@ -3,7 +3,7 @@
 #include <wingdi.h> 
 #include <GL/gl.h> 
 #include <GL/glu.h> 
-#include <GL/glut.h>
+#include "Include/GL/glut.h"
 
 class MyGL {
 public:

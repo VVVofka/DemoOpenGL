@@ -2,7 +2,7 @@
 #include <wingdi.h> 
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/freeglut.h>
+#include "Include/GL/freeglut.h"
 
 void display(void) {
 	/* стираем */

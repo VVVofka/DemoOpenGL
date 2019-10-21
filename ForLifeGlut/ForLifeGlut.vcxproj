@@ -96,8 +96,9 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freeglutd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <AdditionalLibraryDirectories>D:\Users\VVV\source\repos\VVVofka\DemoOpenGL\ForLifeGlut\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,6 +129,8 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)$(ProjectName)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -140,6 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OG\Info.h" />
+    <ClInclude Include="Include\GL\freeglut.h" />
+    <ClInclude Include="Include\GL\freeglut_ext.h" />
+    <ClInclude Include="Include\GL\freeglut_std.h" />
+    <ClInclude Include="Include\GL\freeglut_ucall.h" />
+    <ClInclude Include="Include\GL\glut.h" />
     <ClInclude Include="TestGlut.h" />
     <ClInclude Include="VLife\PaternLaysX2.h" />
     <ClInclude Include="VLife\PaternLayX2.h" />

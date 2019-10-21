@@ -2,8 +2,8 @@
 //#include <GL/glew.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
-#include <GL/freeglut.h>
-#include "PaternLaysX2.h"
+#include "Include/GL/freeglut.h"
+#include "VLife/PaternLaysX2.h"
 //#define MAINENABL
 struct Para {
 	Para() { x = 0; y = 0; };
@@ -26,8 +26,8 @@ public:
 		int u = (int)((double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min);
 		v[u] = (v[u] + 1) & 1;
 
-		lays.Run);
-
+		lays.GetVal();
+		lays.Transform();
 	} // /////////////////////////////////////////////////////////////////////////////////////////
 private:
 

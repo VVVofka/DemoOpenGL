@@ -19,6 +19,9 @@
     <Filter Include="Source Files\VLife">
       <UniqueIdentifier>{104526bb-2146-48b6-a37e-9c9377782e5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GL">
+      <UniqueIdentifier>{c53b4615-cbb1-4de0-8a1d-5e688ac19929}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\OG\Info.h">
@@ -38,6 +41,21 @@
     </ClInclude>
     <ClInclude Include="VLife\Point.h">
       <Filter>Header Files\VLife</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GL\freeglut.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GL\freeglut_ext.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GL\freeglut_std.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GL\freeglut_ucall.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="Include\GL\glut.h">
+      <Filter>Header Files\GL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
