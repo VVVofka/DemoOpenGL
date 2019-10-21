@@ -81,3 +81,10 @@ void PaternLayX2::getQuadro(int x, int y, atype** p) {
 	p[2] = beginRow + x;	// left top
 	p[3] = beginRow + x1;	// right top
 } // ////////////////////////////////////////////////////////////////
+deeptype PaternLayX2::getPursH(deeptype h) {
+	deeptype ret = h & 1;
+	if((h & 2) != 0) ret++;	// TODO: if()?
+	if((h & 4) != 0) ret++;
+	if(ret > 1) return 1;
+	return 0;
+} // ///////////////////////////////////////////////////////////////

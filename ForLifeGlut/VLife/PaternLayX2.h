@@ -18,13 +18,8 @@ public:
 	atype* v;	// base array
 	BOOL bDelayTransform;
 
-	atype val4Up(int ofset_in_atom);
-	atype val4Up2();	// for second pass corner (once)
-	atype val4Up2x(int ofset_in_atom);	// for second pass x-axe along (x=1..sz-1; y=0)
-	atype val4Up2y(int ofset_in_atom);	// for second pass y-axe along (x=0; y=1..sz-1)
-
-	atype RecursGetVal(int x_v, int y_v);
-	void transform(int x_v, int y_v, deeptype h);
+	void GetVal();
+	void Transform();
 
 	inline int Coord2Atom(int x, int y) { return x + y * sz; }
 	inline int Coord2Cell(int x, int y) { return x / BASE + (y / BASE) * cntRowCell; }
@@ -32,11 +27,11 @@ public:
 	PaternLayX2* dnLay;	// нижележащий слой
 protected:
 	static const int BASE = 2;
-	atype val4Up(int x, int y);
+	atype RecursGetVal(int x_v, int y_v);
+	void transform(int x_v, int y_v, deeptype h);
 private:
 	deeptype getPursH(deeptype h);
 	Patterns* patterns;
-	unsigned getVal(pattertype);
 	void getQuadro(int x, int y, atype** p);
 }; // ******************************************************************************************
 
