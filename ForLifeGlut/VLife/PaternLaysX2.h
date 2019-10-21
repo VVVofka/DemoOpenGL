@@ -3,20 +3,18 @@
 // слой - клетка - атом
 class PaternLaysX2{
 public:
-	PaternLaysX2(int maxsize, BOOL DelayUp, BOOL DelayTransform);
+	PaternLaysX2();
+	PaternLaysX2(int maxsize, int min_size, BOOL DelayUp, BOOL DelayTransform);
 	~PaternLaysX2();
 
-	int maxsize;	// длина стороны самого большого слоя
 	int layscnt;
 	PaternLayX2** vlays;
 
+	void Create(int maxsize, int min_size, BOOL DelayUp, BOOL DelayTransform);
 	void GetVal();
 	void Transform();
-	BOOL bDelayUp;
-	BOOL bTransform;
 
 private:
-
-
+	void delv();
 }; // **************************************************************************************************
 

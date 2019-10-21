@@ -7,14 +7,14 @@ Para inWnd;
 GLint szCell=0;
 
 void init(void) {
-	glClearColor(0.0f, 0.0f, 0.1f, 0.0f);
+	glClearColor(0.0f, 0.0f, 0.3f, 0.0f);
 	glShadeModel(GL_FLAT);
 } // /////////////////////////////////////////////////////////////////////////////////
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT);
 	glPushMatrix();
-	glColor3f(1.0, 1.0, 0.0);
 	glPointSize((GLfloat)szCell);
+	glColor3f(1.0, 1.0, 0.0);
 	glBegin(GL_POINTS);
 	//glVertex2f(0.5, 0.5);
 	//glVertex2f(1.5, 1.5);
@@ -25,7 +25,7 @@ void display(void) {
 
 	for(int y = 0, n = 0; y < t.sz; y++) {
 		for(int x = 0; x < t.sz; x++, n++) {
-			if(t.v[n])
+			if(t[n])
 				glVertex2f(x + 0.5f, y + 0.5f);
 		}
 	}
@@ -33,12 +33,14 @@ void display(void) {
 	glPopMatrix();
 
 	glutSwapBuffers();
+	t.getVal();
 } // /////////////////////////////////////////////////////////////////////////////////
 void spinDisplay(void) {
-	t.Rand();				// MAIN WORK !!!
+	t.Transform();				// MAIN WORK !!!
+	t.Rand();
 	glutPostRedisplay();
 } // /////////////////////////////////////////////////////////////////////////////////
-void reshape(int w, int h) {
+void reSize(int w, int h) {
 	inWnd.set(w, h);
 	szCell = inWnd.Min() / t.sz - 1;
 	GLfloat retv[2];
@@ -76,7 +78,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Двойная буферизация");
 	init();
 	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
+	glutReshapeFunc(reSize);
 	glutMouseFunc(mouse);
 	glutMainLoop();
 	return 0;
