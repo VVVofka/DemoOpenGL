@@ -7,11 +7,11 @@
 atype PaternLayX2::RecursGetVal0(int x_v, int y_v) {
 	atype* p0 = v + x_v + y_v * sz;
 	if(dnLay != nullptr) {
-		atype sum = dnLay->RecursGetVal1(x_v <<= 1, y_v <<= 1); //1 
+		atype sum = dnLay->RecursGetVal0(x_v <<= 1, y_v <<= 1); //1 
 		sum += dnLay->RecursGetVal1(x_v + 1, y_v);				//2 to right by bottom
 		atype nodiag = sum;
-		sum += dnLay->RecursGetVal1(x_v, ++y_v);				//3 to top by left
-		sum += dnLay->RecursGetVal1(x_v + 1, y_v);				//4 to right by top
+		sum += dnLay->RecursGetVal2(x_v, ++y_v);				//3 to top by left
+		sum += dnLay->RecursGetVal3(x_v + 1, y_v);				//4 to right by top
 		if(sum < 2)	return *p0 = 0;
 		if(sum > 2)	return *p0 = 1;
 		*p0 = (nodiag >> 1);	// if(nodiag == 2) :)
