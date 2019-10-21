@@ -9,6 +9,7 @@ GLint szCell=0;
 void init(void) {
 	glClearColor(0.0f, 0.0f, 0.3f, 0.0f);
 	glShadeModel(GL_FLAT);
+	t.Create(4, 1);
 } // /////////////////////////////////////////////////////////////////////////////////
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT);

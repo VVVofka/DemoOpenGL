@@ -12,8 +12,8 @@ PaternLaysX2::~PaternLaysX2() {
 } // /////////////////////////////////////////////////////////////////////////////////////////
 void PaternLaysX2::Create(int max_size, int min_size, BOOL DelayUp, BOOL DelayTransform) {
 	delv();
+	layscnt = 0;
 	int maxsize = 1;
-	layscnt = 1;
 	while(maxsize < max_size)
 		maxsize *= 2, layscnt++;
 	vlays = new PaternLayX2 * [layscnt];
