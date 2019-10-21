@@ -1,7 +1,6 @@
 #pragma once
 #include "Patterns.h"
 typedef unsigned __int8 atype;
-//typedef unsigned __int16 atype2;
 typedef unsigned deeptype;	// uper cells Info (for transform)
 // слой - клетка - атом
 
@@ -10,11 +9,7 @@ public:
 	PaternLayX2(int size_side_in_atom, BOOL DelayGetVal, BOOL DelayTransform);
 	~PaternLayX2();
 	int sz; // длина стороны слоя в атомах
-	int vcnt; // площадь в атомах sz^2 (размер v)
-	int szInCell; //  длина стороны слоя в cell
-	int szCellInAtom;	// длина стороны cell in atom
 	int cntRowCell; //  площадь одного ряда cell в atom
-	int cntCell; //  площадь слоя в cell
 	atype* v;	// base array
 	BOOL bDelayGetVal;
 	BOOL bDelayTransform;

@@ -2,13 +2,9 @@
 
 PaternLayX2::PaternLayX2(int size_side_in_atom, BOOL DelayGetVal, BOOL DelayTransform) {
 	sz = size_side_in_atom;		// длина стороны слоя в атомах
-	szInCell = sz / BASE;		// длина стороны слоя в cell
 	cntRowCell = sz * BASE;		// площадь одного ряда cell в atom
-	cntCell = szInCell * szInCell; // площадь слоя в cell
-	szCellInAtom = BASE;		// длина стороны cell in atom
 	patterns = new Patterns(BASE);
-	vcnt = sz * sz;				// vcnt- площадь в атомах sz^2 (размер v)
-	v = new atype[vcnt]{};
+	v = new atype[sz * sz]{};
 	//for(int j = 0; j < vcnt; j++) v[j] = 0;
 	dnLay = nullptr;
 	bDelayGetVal = DelayGetVal;
