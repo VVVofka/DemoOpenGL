@@ -10,7 +10,7 @@ GLint szCell=0;
 void init(void) {
 	glClearColor(0.0f, 0.0f, 0.3f, 0.0f);
 	glShadeModel(GL_FLAT);
-	t.Create(4, 1);
+	t.Create(4, 1, FALSE, FALSE);
 	t.at(1, 1, 1);
 	t.at(2, 1, 1);
 	t.at(2, 3, 1);
@@ -28,9 +28,9 @@ void display(void) {
 	//glVertex2f(1.5, 1.5);
 	//glVertex2f(2.5, 2.5);
 
-	for(int y = 0, n = 0; y < t.size(); y++) {
-		for(int x = 0; x < t.size(); x++, n++) {
-			if(t[n])
+	for(int y = 0, n = 0; y < t.sz; y++) {
+		for(int x = 0; x < t.sz; x++, n++) {
+			if(t.at(x,y))
 				glVertex2f(x + 0.5f, y + 0.5f);
 		}
 	}
@@ -38,7 +38,6 @@ void display(void) {
 	glPopMatrix();
 
 	glutSwapBuffers();
-	t.getVal();
 } // /////////////////////////////////////////////////////////////////////////////////
 void spinDisplay(void) {
 	t.Transform();				// MAIN WORK !!!
@@ -47,7 +46,7 @@ void spinDisplay(void) {
 } // /////////////////////////////////////////////////////////////////////////////////
 void reSize(int w, int h) {
 	inWnd.set(w, h);
-	szCell = inWnd.Min() / t.size() - 1;
+	szCell = inWnd.Min() / t.sz - 1;
 	GLfloat retv[2];
 	glGetFloatv(GL_POINT_SIZE_RANGE, retv);
 	if(szCell < retv[0]) szCell = (GLint)retv[0];
@@ -59,7 +58,7 @@ void reSize(int w, int h) {
 		glViewport(0, (GLsizei)((h - w) / 2), (GLsizei)w, (GLsizei)w);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0.0, t.size(), 0.0, t.size());
+	gluOrtho2D(0.0, t.sz, 0.0, t.sz);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 } // /////////////////////////////////////////////////////////////////////////////////

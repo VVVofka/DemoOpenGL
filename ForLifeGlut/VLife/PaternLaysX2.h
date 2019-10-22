@@ -11,6 +11,7 @@ public:
 	PaternLayX2** vlays;
 	PaternLayX2* lastLay;
 	atype* v;
+	int sz;
 
 	void Create(int maxsize, int min_size, BOOL DelayUp, BOOL DelayTransform);
 	void GetVal();

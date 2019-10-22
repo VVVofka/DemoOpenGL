@@ -1,7 +1,7 @@
 #include "PaternLaysX2.h"
 
 PaternLaysX2::PaternLaysX2() {
-	layscnt = 0;
+	layscnt = sz = 0;
 	vlays = nullptr;
 	lastLay = nullptr;
 	v = nullptr;
@@ -24,10 +24,14 @@ void PaternLaysX2::Create(int max_size, int min_size, BOOL DelayUp, BOOL DelayTr
 		vlays[nlay] = new PaternLayX2(newsz, DelayUp, DelayTransform);
 		newsz *= 2;
 	}
+#pragma warning(push)
+#pragma warning(disable : 6001) 
+	lastLay = vlays[layscnt - 1];
+#pragma warning(pop)
 	for(int nlay = 1; nlay < layscnt; nlay++)
 		vlays[nlay - 1]->dnLay = vlays[nlay];
-	lastLay = vlays[layscnt - 1];
 	v = lastLay->v;
+	sz = lastLay->sz;
 } // //////////////////////////////////////////////////////////////////////////////////////
 void PaternLaysX2::GetVal() {
 	vlays[0]->GetVal();
