@@ -2,7 +2,8 @@
 #include "TestGlut.h"
 
 #ifndef MAINENABL
-TestGlut t = TestGlut();
+//TestGlut t = TestGlut();
+PaternLaysX2 t;
 Para inWnd;
 GLint szCell=0;
 
@@ -10,6 +11,9 @@ void init(void) {
 	glClearColor(0.0f, 0.0f, 0.3f, 0.0f);
 	glShadeModel(GL_FLAT);
 	t.Create(4, 1);
+	t.at(1, 1, 1);
+	t.at(2, 1, 1);
+	t.at(2, 3, 1);
 } // /////////////////////////////////////////////////////////////////////////////////
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT);

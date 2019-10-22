@@ -17,6 +17,9 @@ public:
 	void Transform();
 
 	inline int Coord2Atom(int x, int y) { return x + y * sz; }
+	inline atype operator[](int n) { return v[n]; }
+	inline void set(int x, int y, int val) { v[x + y * sz] = val; }
+
 
 	PaternLayX2* dnLay;	// нижележащий слой
 protected:

@@ -14,27 +14,23 @@ struct Para {
 }; // ********************************************************************************************
 class TestGlut {
 public:
-	TestGlut() {v[2] = v[7] = v[17] = v[18] = 1;}
+	TestGlut() {}
 private:
 	PaternLaysX2 lays;
 	const static int sz = 6;
-	GLbyte v[sz * sz] = {};
 	// ------------------------------------------------------------------------------------------
 public:
-	int size() {return lays.vlays[lays.layscnt - 1]->sz;}
+	int size() { return lays.lastLay->sz; }
 	GLbyte operator [](int n) {
-		return lays.vlays[lays.layscnt - 1]->v[n];
+		return lays.v[n];
 		//return v[n];
 	} // ////////////////////////////////////////////////////////////////////////////////////////
-	void Rand() {
-		int rnd = rand();
-		int range_min = 0, range_max = sz * sz;
-		int u = (int)((double)rand() / (RAND_MAX + 1) * (range_max - range_min) + range_min);
-		v[u] = (v[u] + 1) & 1;
-	} // /////////////////////////////////////////////////////////////////////////////////////////
 	void Create(int max_size, int min_size = 1, BOOL DelayUp = TRUE, BOOL DelayTransform = TRUE) {
 		lays.Create(max_size, min_size, DelayUp, DelayTransform);
 	} // /////////////////////////////////////////////////////////////////////////////////////////
+	inline atype at(int x, int y) { return lays.v[x + y * lays.lastLay->sz]; }
+	inline void at(int x, int y, int val) { lays.v[x + y * lays.lastLay->sz] = (atype)val; }
+	// /////////////////////////////////////////////////////////////////////////////////////////
 	void getVal() {
 		//lays.GetVal();
 	} // /////////////////////////////////////////////////////////////////////////////////////////

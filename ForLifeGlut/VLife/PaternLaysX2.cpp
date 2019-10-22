@@ -3,6 +3,8 @@
 PaternLaysX2::PaternLaysX2() {
 	layscnt = 0;
 	vlays = nullptr;
+	lastLay = nullptr;
+	v = nullptr;
 } // ///////////////////////////////////////////////////////////////////////////////////////
 PaternLaysX2::PaternLaysX2(int max_size, int min_size = 1, BOOL DelayUp = TRUE, BOOL DelayTransform = TRUE) {
 	Create(max_size,  min_size,  DelayUp,  DelayTransform);
@@ -24,6 +26,8 @@ void PaternLaysX2::Create(int max_size, int min_size, BOOL DelayUp, BOOL DelayTr
 	}
 	for(int nlay = 1; nlay < layscnt; nlay++)
 		vlays[nlay - 1]->dnLay = vlays[nlay];
+	lastLay = vlays[layscnt - 1];
+	v = lastLay->v;
 } // //////////////////////////////////////////////////////////////////////////////////////
 void PaternLaysX2::GetVal() {
 	vlays[0]->GetVal();
