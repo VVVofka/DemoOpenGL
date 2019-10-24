@@ -21,13 +21,6 @@ void display(void) {
 	glPointSize((GLfloat)szCell);
 	glColor3f(1.0, 1.0, 0.0);
 	glBegin(GL_POINTS);
-	//glVertex2f(0.5, 0.5);
-	//glVertex2f(1.5, 1.5);
-	//glVertex2f(1.5, 0.5);
-	//glVertex2f(2.5, 1.5);
-	//glVertex2f(1.5, 1.5);
-	//glVertex2f(2.5, 2.5);
-
 	for(int y = 0, n = 0; y < t.sz; y++) {
 		for(int x = 0; x < t.sz; x++, n++) {
 			if(t.at(x,y))
@@ -42,6 +35,7 @@ void display(void) {
 void spinDisplay(void) {
 	t.Transform();				// MAIN WORK !!!
 	//t.Rand();
+	//glutIdleFunc(NULL);
 	glutPostRedisplay();
 } // /////////////////////////////////////////////////////////////////////////////////
 void reSize(int w, int h) {
@@ -68,8 +62,13 @@ void reSize(int w, int h) {
 void mouse(int button, int state, int x, int y) {
 	switch(button) {
 		case GLUT_LEFT_BUTTON:
-			if(state == GLUT_DOWN) glutIdleFunc(spinDisplay); break;
-		case GLUT_RIGHT_BUTTON: if(state == GLUT_DOWN) glutIdleFunc(NULL); break;
+			if(state == GLUT_DOWN) 
+				glutIdleFunc(spinDisplay); 
+			break;
+		case GLUT_RIGHT_BUTTON: 
+			if(state == GLUT_DOWN) 
+				glutIdleFunc(NULL); 
+			break;
 	}
 } // /////////////////////////////////////////////////////////////////////////////////
 //Запросить режим двойной буферизации 

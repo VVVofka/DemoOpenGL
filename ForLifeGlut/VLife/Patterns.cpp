@@ -19,7 +19,7 @@ void Patterns::Create(pattertype X, pattertype Y) {
 			delete[] v;
 		v = new pattertype[szv];
 		for(pattertype n = 0; n < sz; n++) {
-			_RPT1(_CRT_WARN, "%u\n", n);
+			//_RPT1(_CRT_WARN, "%u\n", n);
 			_ASSERTE(2 * n + 1 < szv);
 			v[2 * n] = Dissipation(n);
 			v[2 * n + 1] = Density(n);
